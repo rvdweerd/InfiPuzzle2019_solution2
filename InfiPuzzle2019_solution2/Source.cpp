@@ -7,8 +7,8 @@
 void Infi1()
 {	// aoc.infi.nl 2019, deel 1
 	// input
-	std::vector<std::pair<int, int>> flats = { {3,3},{5,5},{9,6},{13,7},{15,9},{16,10},{18,9},{21,10},{23,3},{25,4},{28,5},{29,7},{30,8},{34,7},{37,9},{39,7},{41,8},{42,10},{43,9},{47,10},{48,10},{50,6},{52,7},{53,10},{56,6},{57,4},{58,6},{59,2},{62,2} };
-	std::vector < std::pair<int, int>> sprongen = { {1,2},{3,1},{0,0},{1,2},{0,1},{1,0},{2,1},{1,0},{1,1},{2,1},{0,2},{0,1},{3,0},{2,2},{1,0},{1,1},{0,2},{0,0},{3,1},{0,0},{1,0},{1,1},{0,3},{2,0},{0,0},{0,2},{0,0},{2,0}, {1,2},{3,1},{0,0},{1,2},{0,1},{1,0},{2,1},{1,0},{1,1},{2,1},{0,2},{0,1},{3,0},{2,2},{1,0},{1,1},{0,2},{0,0},{3,1},{0,0},{1,0},{1,1},{0,3},{2,0},{0,0},{0,2},{0,0},{2,0} };
+	std::vector<std::pair<int, int>> flats = { {3,7},{5,9},{8,5},{10,6},{14,7},{16,10},{21,9},{25,10},{30,6},{33,8},{34,9},{37,10},{42,8},{45,5},{47,6},{49,9},{50,10},{54,8},{57,9},{58,10},{61,8} };
+	std::vector < std::pair<int, int>> sprongen = { {1,2},{2,0},{1,1},{3,1},{1,3},{4,0},{3,1},{4,0},{2,2},{0,1},{2,1},{4,0},{2,0},{1,1},{0,0},{0,1},{3,0},{2,1},{0,1},{2,0} };
 
 	// Maak map van alle hoogtes van de flats: KEY= positie x van flat, VALUE = hoogte
 	std::map<int, int> hoogtes;
@@ -100,7 +100,7 @@ void Infi2()
 {
 	// aoc.infi.nl 2019, deel 2
 	// Input (kan json load doen, maar dit was even sneller en is triviaal)
-	std::vector<std::pair<int, int>> flats = { {3,3},{5,5},{9,6},{13,7},{15,9},{16,10},{18,9},{21,10},{23,3},{25,4},{28,5},{29,7},{30,8},{34,7},{37,9},{39,7},{41,8},{42,10},{43,9},{47,10},{48,10},{50,6},{52,7},{53,10},{56,6},{57,4},{58,6},{59,2},{62,2} };
+	std::vector<std::pair<int, int>> flats = { {3,7},{5,9},{8,5},{10,6},{14,7},{16,10},{21,9},{25,10},{30,6},{33,8},{34,9},{37,10},{42,8},{45,5},{47,6},{49,9},{50,10},{54,8},{57,9},{58,10},{61,8} };
 	std::vector < std::pair<int, int>> basisSprongen = { {0,0},{0,1},{0,2 },{0,3},{0,4},{1,0},{1,1},{1,2},{1,3},{2,0},{2,1},{2,2},{3,0},{3,1},{4,0} };
 
 	// Maak map van alle hoogtes van de flats: KEY= positie x van flat, VALUE = hoogte
@@ -109,9 +109,11 @@ void Infi2()
 	
 	// Maak een graph die geschikt voor Dijkstra (arcs zijn de sprongen met energie als cost). SimpleGraph is eigen implementatie van graph class & dijkstra
 	SimpleGraph graph;
+
 	// Maak een hulp-queue om chart te maken en vul deze met de startpositie
 	std::queue<std::pair<int, int>> positionsQueue; 
 	positionsQueue.push(flats[0]);
+
 	// Vul de graph met een BFS routine
 	VulGraph(graph, positionsQueue, basisSprongen, hoogtes);
 	graph.PrintAdjacencyList();
@@ -136,6 +138,7 @@ void Infi2()
 
 int main()
 {
+	// https://aoc.infi.nl 2019
 	// Deze oplossing maakt gebruik Dijkstra's shortest path algorithm, mooi om onze Nederlandse trots toe te passen. 
 	// 
 	// Naast de C++ Standard Library (STL) includes voor standaard container classes heb ik eigen "SimpleGraph" class 
@@ -147,7 +150,7 @@ int main()
 	// > de kosten van iedere sprongen is een dataveld van de Edge
 	//
 	// Als de graph eenmaal goed geconstrueerd is, is het eenvoudig om Dijkstra toe te passen.
-	// groeten! Rogier
+	// groeten! Rogier (rogerscode@gmail.com)
 
 	Infi1(); // deel 1 van de puzzel
 	Infi2(); // deel 2
