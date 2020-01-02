@@ -138,7 +138,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="GraphDefs.h" />
     <ClInclude Include="SimpleGraph.h" />
   </ItemGroup>
   <ItemGroup>

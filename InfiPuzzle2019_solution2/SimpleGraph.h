@@ -7,18 +7,33 @@
 class SimpleGraph
 {
 public:
+	SimpleGraph() = default;
+	~SimpleGraph() // destructor t.b.v. memory mgt
+	{
+		for (Arc* a : arcs) delete a;
+		for (Node* n : nodes) delete n;
+	}
 	struct Arc;
 	struct Node
 	{
-		// Basisvelden t.b.v. graph functionaliteit
-		Node(std::string n)
+		Node(std::string name)
 			:
-			name(n)
-		{
-		}
+			name(name)
+		{}
+		// Basisvelden t.b.v. graph functionaliteit
 		std::string name;
 		std::set<Arc*> arcs;
 		// Voeg hier aanvullende datavelden per node toe
+		std::pair<int,int> DeSerializeNodePosition(std::string name)
+		{
+			auto pos0 = name.find("("); 
+			auto pos1 = name.find(",");
+			auto pos2 = name.find(")");
+			int first = std::stoi(name.substr(pos0 + 1, pos1 - pos0 - 1));
+			int second = std::stoi(name.substr(pos1 + 1, pos2 - pos1 - 1));
+			return { first,second };
+		}
+
 	};
 	struct Arc
 	{
@@ -34,8 +49,6 @@ public:
 		int cost;
 	};
 public:
-	SimpleGraph() = default;
-	~SimpleGraph() = default;
 	void AddNode(std::string name);
 	void AddArc(Node* start, Node* finish, int cost);
 	void AddOneWayConnection(std::string n1, std::string n2, int c);
@@ -46,6 +59,10 @@ public:
 	void BFS(std::string startname);
 	void BFS(Node* startnode);
 	void VisitFunction1(Node* node);
+	bool NodeExists(std::string name)
+	{
+		return (nodeMap.find(name) != nodeMap.end());
+	}
 
 	struct GreaterPathLength
 	{
