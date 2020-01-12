@@ -150,6 +150,10 @@ int main()
 	// > de kosten van iedere sprongen is een dataveld van de Edge
 	//
 	// Als de graph eenmaal goed geconstrueerd is, is het eenvoudig om Dijkstra toe te passen.
+	//
+	// Voor toepassing van Dijkstra is het niet nodig om eerst de hele (volledige) graph te construeren. Ik raakte 
+	// geobsedeerd om dit ook toe te passen, denk ik goed gelukt alhier: https://github.com/rvdweerd/InfiPuzzle2019_solution3.git
+	//
 	// groeten! Rogier (rogerscode@gmail.com)
 
 	Infi1(); // deel 1 van de puzzel
